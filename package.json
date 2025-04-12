@@ -1,0 +1,14 @@
+{
+  "name": "@ig3/6809js",
+  "version": "0.0.1",
+  "description": "M6809 emulator",
+  "main": "6809.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ig3/6809js.git"
+  },
+  "license": "MIT",
+  "files": [
+    "6809.js"
+  ]
+}
