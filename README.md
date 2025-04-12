@@ -7,12 +7,25 @@ Used in all emulations at [ASM80 online IDE](http://www.asm80.com)
 
 You can use 6809js also as Node.js or AMD module.
 
+Installation
+------------
+
+```
+npm install @ig3/6809js
+```
+
 Usage
 -----
 
+```
+const CPU6809 = require('@ig3/6809js');
+```
+
 (a.k.a. The API)
 
-- *window.CPU6809* - main object (instantiated at the start - it shall change)
+- *window.CPU6809* - main object (instantiated at the start if loaded in
+  browser)
+
 - *CPU6809.init(memoryTo,memoryAt,ticker)* - Initializes the whole system. All parameters are callback functions for port / memory access:
 	- memoryTo(addr,value) - store byte to given address
 	- memoryAt(addr) - read byte from given address
