@@ -1546,7 +1546,6 @@ var oSUB = function(b,v) {
         if (tdaa & 0x100) CC |= F_CARRY;
         rA = tdaa & 0xff;
         CC |= flagsNZ[rA];
-        //console.log(precarry, CC & F_CARRY);
         break;
       case 0x1a: //ORCC
         CC |= fetch();
@@ -3321,6 +3320,17 @@ IMMEDIAT_16 8
   //---------- Exports
 
   return {
+    go: function (delay) {
+      function nextIteration () {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            step();
+            resolve(nextIteration());
+          }, (delay || 0));
+        });
+      }
+      return nextIteration();
+    },
     steps: function (Ts) {
       //T=0;
       while (Ts > 0) {
@@ -3364,7 +3374,6 @@ IMMEDIAT_16 8
         flags |= fINT;
         pc=wordAt(IrqTo);
         T+=7;
-        //console.log(pc);
         */
     },
     nmi: function () {
@@ -3375,7 +3384,6 @@ IMMEDIAT_16 8
         flags |= fINT;
         pc=wordAt(NMITo);
         T+=7;
-        //console.log(pc);
         */
     },
     set: function (reg, value) {
